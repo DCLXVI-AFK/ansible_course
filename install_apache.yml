@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: httpd installation
+    ansible.builtin.dnf:
+      name: httpd
+      state: present
