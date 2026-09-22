@@ -1,0 +1,22 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+
+
+
+   - name: Install httpd service
+     ansible.builtin.dnf:
+      name: httpd
+      state: latest
+
+
+
+
+   - name: Start httpd service
+     ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: yes
