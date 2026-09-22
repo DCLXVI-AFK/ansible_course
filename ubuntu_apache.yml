@@ -1,0 +1,11 @@
+---
+- hosts: ubuntu
+  become: true
+  tasks:
+
+
+   - name: install apache
+     ansible.builtin.apt:
+      name: apache2
+      state: latest
+
