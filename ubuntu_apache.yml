@@ -1,5 +1,5 @@
 ---
-- hosts: ubuntu
+- hosts: all
   become: true
   tasks:
 
@@ -9,3 +9,4 @@
       name: apache2
       state: latest
 
+     when: ansible_distribution == "Ubuntu"
