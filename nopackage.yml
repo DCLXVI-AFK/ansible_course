@@ -1,0 +1,12 @@
+---
+- hosts: rocky
+  become: true
+  tasks:
+
+
+  - name: Install git package
+    ansible.builtin.package:
+     name:
+     - git
+     - vim
+     state: latest

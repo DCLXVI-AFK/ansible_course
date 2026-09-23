@@ -1,0 +1,21 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+
+  - name: Install nginx and php
+    ansible.builtin.dnf:
+     name:
+      - nginx
+      - php
+    when: ansible_distribution == "rocky"
+
+
+  - name: Install nginx and php
+    ansible.builtin.apt:
+     name:
+      - nginx
+      - php
+    when: ansible_distribution == "Ubuntu"
