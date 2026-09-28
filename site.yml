@@ -1,0 +1,23 @@
+---
+
+- hosts: web_server
+  become: true
+  tasks:
+
+
+  - name: update for  rocky
+    tags: always
+    ansible.builtin.package:
+      update_only: no
+      update_cache: yes
+    when: ansible_distribution == "Rocky"
+
+- hosts: ubuntu
+  become: true
+  tasks:
+
+  - name: update ubuntu
+    tags: apache
+    ansible.builtin.package:
+     name: apache
+     state: absent
