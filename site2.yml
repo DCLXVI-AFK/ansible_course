@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+
+  - name: copy files 1..10
+    tags: copy
+    ansible.builtin.copy:
+     src: files
+     dest: /home/
+     owner: root
+     group: root
+     mode: 777

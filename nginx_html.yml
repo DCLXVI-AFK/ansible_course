@@ -1,0 +1,41 @@
+---
+
+- hosts: web_server
+  become: true
+  tasks:
+
+
+
+
+  - name: stop httpd
+    ansible.builtin.service:
+      name: httpd
+      state: stopped
+      enabled: no
+
+
+
+  - name: install nginx server
+    ansible.builtin.dnf:
+      name: nginx
+      state: latest
+
+
+
+  - name: start nginx server
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes
+
+
+
+
+
+  - name: copy html basic to nginx
+    ansible.builtin.copy:
+     src: files/index.html
+     dest: /usr/share/nginx/html
+     owner: root
+     group: root
+     mode: 777
