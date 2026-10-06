@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+
+  - name: create user
+    tags: always
+    ansible.builtin.user:
+     name: simone
+     groups: root

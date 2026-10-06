@@ -1,0 +1,39 @@
+---
+
+- hosts: web_server
+  become: true
+  tasks:
+
+
+
+  - name: stop nginx service
+    ansible.builtin.service:
+      name: nginx
+      state: stopped
+      enabled: no
+
+  - name: install httpd
+    ansible.builtin.dnf:
+      name: httpd
+      state: latest
+
+
+  - name: start httpd
+    ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: yes
+
+  - name: change email adress httpd
+    ansible.builtin.lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^ServerAdmin'
+      line: ServerAdmin somebody@dayzero.com
+    register: httpd
+
+
+  - name: restart httpd after cfg change
+    ansible.builtin.service:
+      name: httpd
+      state: restarted
+    when: httpd.changed
