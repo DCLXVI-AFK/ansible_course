@@ -1,0 +1,40 @@
+---
+
+- hosts: web_server
+  become: true
+  tasks:
+
+
+
+
+  - name: install nginx
+    ansible.builtin.dnf:
+      name: nginx
+      state: latest
+
+
+
+  - name: remove httpd
+    ansible.builtin.dnf:
+      name: httpd
+      state: absent
+
+
+  - name: start services
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes
+
+
+  - name: copy files
+    ansible.builtin.copy:
+      src: files
+      dest: /home/
+      owner: root
+      group: root
+      mode: 777
+
+
+
+
